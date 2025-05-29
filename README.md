@@ -1,12 +1,47 @@
-# React + Vite
+# React Task Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple task management frontend built with **React**
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- JWT-based Login & Logout
+- Task CRUD operations
+- Auth-protected routes
 
-## Expanding the ESLint configuration
+## 🛠️ Setup Instructions
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 🔧 Prerequisites
+
+- Node.js (v16+ recommended)
+- npm (v8+)
+- Backend API running (Django server with `/token/`, `/token/refresh/`, and `/tasks/` endpoints)
+
+---
+
+### ⚙️ Frontend Setup
+
+sh setup.sh
+
+This script will:
+
+    Install all required npm packages
+
+    Copy .env.sample to .env
+
+## Run the app
+
+npm run dev
+
+## Authentication Flow
+
+    User logs in via /token/ endpoint
+
+    Access token is stored in localStorage
+
+    On 401 Unauthorized, the app attempts to refresh the token using /token/refresh/
+
+## Scripts
+Script	        Description
+npm install	    Installs dependencies
+npm run dev	    Starts dev server
+setup.sh	    One-time setup automation
