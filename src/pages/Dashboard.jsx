@@ -12,22 +12,22 @@ export default function Dashboard() {
   const apiAction = useApiAction();
 
   const fetchTasks = async () => {
-    const data = await apiAction({ endpoint: "/tasks/" });
+    const data = await apiAction({ 
+			endpoint: "/tasks/",
+			params: {
+				status: statusFilter,
+				priority: priorityFilter,
+				search
+		} });
     if (data?.results) {
       setTasks(data.results);
     }
   };
 
-
   useEffect(() => {
     fetchTasks();
-  }, []);
+  }, [priorityFilter, statusFilter, search]);
 
-  const filtered = tasks.filter((t) =>
-    t.title.toLowerCase().includes(search.toLowerCase()) &&
-    (!statusFilter || t.status === statusFilter) &&
-    (!priorityFilter || t.priority === priorityFilter)
-  );
 
   const total = tasks.length;
   const completed = tasks.filter((t) => t.status === "Completed").length;
@@ -72,7 +72,7 @@ export default function Dashboard() {
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((task) => (
+          {tasks.map((task) => (
             <TaskCard key={task.id} task={task} />
           ))}
         </div>
